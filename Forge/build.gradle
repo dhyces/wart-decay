@@ -2,20 +2,23 @@ buildscript {
     repositories {
         maven { url = 'https://maven.minecraftforge.net' }
         mavenCentral()
+		maven { url = 'https://maven.parchmentmc.org' }
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+		classpath 'org.parchmentmc:librarian:1.+'
     }
 }
 apply plugin: 'java'
 apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 archivesBaseName = "${mod_name}-forge-${minecraft_version}"
 
 minecraft {
-    mappings channel: 'official', version: minecraft_version
+    mappings channel: 'parchment', version: "2022.11.06-1.19.2"
     
     if (project.hasProperty('forge_ats_enabled') && project.findProperty('forge_ats_enabled').toBoolean()) {
         // This location is hardcoded in Forge and can not be changed.
@@ -75,6 +78,7 @@ sourceSets.main.resources.srcDir 'src/generated/resources'
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     compileOnly project(":Common")
+	implementation fg.deobf("com.github.Virtuoel:Statement:${statement_version_forge}")
 }
 
 tasks.withType(JavaCompile) {

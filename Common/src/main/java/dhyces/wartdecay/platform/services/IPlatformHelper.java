@@ -1,4 +1,4 @@
-package com.example.examplemod.platform.services;
+package dhyces.wartdecay.platform.services;
 
 public interface IPlatformHelper {
 

@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dhyces.wartdecay.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "BlockBehaviorMixin",
+    "BlockMixin",
+    "HugeFungusFeatureMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+  }
