@@ -1,6 +1,7 @@
 package dhyces.wartdecay.mixin;
 
 import dhyces.wartdecay.MixinUtil;
+import dhyces.wartdecay.WartDecay;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -18,7 +19,7 @@ public class BlockMixin {
     private void wartdecay_hasRandomTick(BlockState state, CallbackInfoReturnable<Boolean> cir) {
         var thiz = (Block)(Object)this;
         if (thiz == Blocks.NETHER_WART_BLOCK || thiz == Blocks.WARPED_WART_BLOCK) {
-            cir.setReturnValue(state.getValue(BlockStateProperties.DISTANCE) == 7 && !state.getValue(BlockStateProperties.PERSISTENT));
+            cir.setReturnValue(state.getValue(WartDecay.WART_DISTANCE) == WartDecay.WART_MAX_DISTANCE && !state.getValue(BlockStateProperties.PERSISTENT));
         }
     }
 

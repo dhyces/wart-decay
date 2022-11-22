@@ -5,10 +5,9 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "BlockBehaviorMixin",
-    "BlockMixin",
-    "HugeFungusFeatureMixin"
+    "BlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   }
-  }
+}

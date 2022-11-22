@@ -1,11 +1,12 @@
 package dhyces.wartdecay.mixin;
 
 import dhyces.wartdecay.MixinUtil;
+import dhyces.wartdecay.WartDecay;
+import dhyces.wartdecay.platform.Services;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -28,9 +29,10 @@ public abstract class BlockBehaviorMixin {
     private void wartdecay_randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random, CallbackInfo ci) {
         if ((Object)this instanceof Block block) {
             if (block == Blocks.NETHER_WART_BLOCK || block == Blocks.WARPED_WART_BLOCK) {
-                tick(state, level, pos, random);
-                if (!state.getValue(BlockStateProperties.PERSISTENT) && state.getValue(BlockStateProperties.DISTANCE) == 7) {
-                    // Block.dropResources(state, level, pos);  //too much spam, the way these trees generate can drop a lot
+                if (!state.getValue(BlockStateProperties.PERSISTENT) && state.getValue(WartDecay.WART_DISTANCE) == WartDecay.WART_MAX_DISTANCE) {
+                    if (Services.PLATFORM.getDoWartDrops()) {
+                        Block.dropResources(state, level, pos);
+                    }
                     level.removeBlock(pos, false);
                     ci.cancel();
                 }
@@ -52,7 +54,7 @@ public abstract class BlockBehaviorMixin {
         var thiz = (Block)(Object)this;
         if (thiz == Blocks.NETHER_WART_BLOCK || thiz == Blocks.WARPED_WART_BLOCK) {
             int i = MixinUtil.getDistanceAt(neighborState) + 1;
-            if (i != 1 || state.getValue(BlockStateProperties.DISTANCE) != i) {
+            if (i != 1 || state.getValue(WartDecay.WART_DISTANCE) != i) {
                 level.scheduleTick(currentPos, thiz, 1);
             }
 

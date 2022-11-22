@@ -4,7 +4,7 @@
     "version": "${version}",
 
     "name": "Wart Decay",
-    "description": "",
+    "description": "Makes wart blocks decay in a similar way to leaves",
     "authors": [
       "Dhyces"
     ],
@@ -14,7 +14,7 @@
     },
 
     "license": "MIT",
-    "icon": "",
+    "icon": "logo.png",
 
     "environment": "*",
     "entrypoints": {
@@ -31,9 +31,7 @@
       "fabric": "*",
       "minecraft": "1.19.x",
       "java": ">=17",
-      "statement": ">=4.2.4"
-    },
-    "suggests": {
-      "another-mod": "*"
+      "statement": ">=4.2.4",
+      "midnightlib": ">=1.0.0"
     }
   }

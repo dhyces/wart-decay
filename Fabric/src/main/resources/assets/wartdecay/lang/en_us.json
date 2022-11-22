@@ -1,0 +1,5 @@
+{
+  "wartdecay.midnightconfig.title": "Wart Decay Config",
+  "wartdecay.midnightconfig.wartDropComment": "Determines whether wart blocks will do drops when they decay",
+  "wartdecay.midnightconfig.doWartDrops": "doWartDrops"
+}
