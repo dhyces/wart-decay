@@ -43,6 +43,10 @@ loom {
             runDir("run")
         }
     }
+	
+	mixin {
+		defaultRefmapName = "wartdecay.refmap.json"
+	}
 }
 
 
