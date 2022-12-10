@@ -27,32 +27,28 @@ public abstract class BlockBehaviorMixin {
 
     @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
     private void wartdecay_randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random, CallbackInfo ci) {
-        if ((Object)this instanceof Block block) {
-            if (block == Blocks.NETHER_WART_BLOCK || block == Blocks.WARPED_WART_BLOCK) {
-                if (!state.getValue(BlockStateProperties.PERSISTENT) && state.getValue(WartDecay.WART_DISTANCE) == WartDecay.WART_MAX_DISTANCE) {
-                    if (Services.PLATFORM.getDoWartDrops()) {
-                        Block.dropResources(state, level, pos);
-                    }
-                    level.removeBlock(pos, false);
-                    ci.cancel();
+        if (state.is(Blocks.NETHER_WART_BLOCK) || state.is(Blocks.WARPED_WART_BLOCK)) {
+            if (!state.getValue(BlockStateProperties.PERSISTENT) && state.getValue(WartDecay.WART_DISTANCE) == WartDecay.WART_MAX_DISTANCE) {
+                if (Services.PLATFORM.getDoWartDrops()) {
+                    Block.dropResources(state, level, pos);
                 }
+                level.removeBlock(pos, false);
+                ci.cancel();
             }
         }
     }
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void wartdecay_tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random, CallbackInfo ci) {
-        if ((Object)this instanceof Block block) {
-            if (block == Blocks.NETHER_WART_BLOCK || block == Blocks.WARPED_WART_BLOCK) {
-                level.setBlock(pos, MixinUtil.updateDistance(state, level, pos), 3);
-            }
+        if (state.is(Blocks.NETHER_WART_BLOCK) || state.is(Blocks.WARPED_WART_BLOCK)) {
+            level.setBlock(pos, MixinUtil.updateDistance(state, level, pos), 3);
         }
     }
 
     @Inject(method = "updateShape", at = @At("HEAD"), cancellable = true)
     private void wartdecay_updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos currentPos, BlockPos neighborPos, CallbackInfoReturnable<BlockState> cir) {
         var thiz = (Block)(Object)this;
-        if (thiz == Blocks.NETHER_WART_BLOCK || thiz == Blocks.WARPED_WART_BLOCK) {
+        if (state.is(Blocks.NETHER_WART_BLOCK) || state.is(Blocks.WARPED_WART_BLOCK)) {
             int i = MixinUtil.getDistanceAt(neighborState) + 1;
             if (i != 1 || state.getValue(WartDecay.WART_DISTANCE) != i) {
                 level.scheduleTick(currentPos, thiz, 1);

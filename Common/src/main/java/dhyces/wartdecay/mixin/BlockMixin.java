@@ -17,17 +17,16 @@ public class BlockMixin {
 
     @Inject(method = "isRandomlyTicking", at = @At("HEAD"), cancellable = true)
     private void wartdecay_hasRandomTick(BlockState state, CallbackInfoReturnable<Boolean> cir) {
-        var thiz = (Block)(Object)this;
-        if (thiz == Blocks.NETHER_WART_BLOCK || thiz == Blocks.WARPED_WART_BLOCK) {
+        if (state.is(Blocks.NETHER_WART_BLOCK) || state.is(Blocks.WARPED_WART_BLOCK)) {
             cir.setReturnValue(state.getValue(WartDecay.WART_DISTANCE) == WartDecay.WART_MAX_DISTANCE && !state.getValue(BlockStateProperties.PERSISTENT));
         }
     }
 
     @Inject(method = "getStateForPlacement", at = @At("HEAD"), cancellable = true)
     private void wartdecay_getStateForPlacement(BlockPlaceContext context, CallbackInfoReturnable<BlockState> cir) {
-        var thiz = (Block)(Object)this;
-        if (thiz == Blocks.NETHER_WART_BLOCK || thiz == Blocks.WARPED_WART_BLOCK) {
-            BlockState blockState = thiz.defaultBlockState().setValue(BlockStateProperties.PERSISTENT, true);
+        var state = context.getLevel().getBlockState(context.getClickedPos());
+        if (state.is(Blocks.NETHER_WART_BLOCK) || state.is(Blocks.WARPED_WART_BLOCK)) {
+            BlockState blockState = state.setValue(BlockStateProperties.PERSISTENT, true);
             cir.setReturnValue(MixinUtil.updateDistance(blockState, context.getLevel(), context.getClickedPos()));
         }
     }
