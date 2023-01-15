@@ -31,7 +31,7 @@
       "fabric": "*",
       "minecraft": "1.19.x",
       "java": ">=17",
-      "statement": ">=4.2.4",
+      "statement": ">=4.2.5",
       "midnightlib": ">=1.0.0"
     }
   }
