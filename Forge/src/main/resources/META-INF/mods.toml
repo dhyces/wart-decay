@@ -27,6 +27,6 @@ Makes wart blocks decay in a similar way to leaves
 [[dependencies.wartdecay]]
     modId="statement"
     mandatory=true
-    versionRange="[4.2.4,)"
+    versionRange="[4.2.5,)"
     ordering="NONE"
     side="BOTH"
