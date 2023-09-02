@@ -14,11 +14,10 @@ dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings loom.layered() {
 		officialMojangMappings()
-		parchment("org.parchmentmc.data:parchment-1.19.2:2022.11.06@zip")
+		parchment("org.parchmentmc.data:parchment-1.20.1:2023.08.20@zip")
 	}
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
-    implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
     implementation project(":Common")
 	
 	modApi("com.github.Virtuoel:Statement:${statement_version_fabric}", {

@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[43,)"
+loaderVersion="[47,)"
 license="MIT"
 [[mods]]
 modId="wartdecay"
@@ -15,13 +15,13 @@ Makes wart blocks decay in a similar way to leaves
 [[dependencies.wartdecay]]
     modId="forge"
     mandatory=true
-    versionRange="[43,)"
+    versionRange="[47,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.wartdecay]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19.2,1.20)"
+    versionRange="[1.20,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.wartdecay]]

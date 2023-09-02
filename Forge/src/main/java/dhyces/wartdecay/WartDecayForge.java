@@ -19,7 +19,7 @@ public class WartDecayForge {
 
         var spec = new ForgeConfigSpec.Builder();
         spec.push("Common");
-        Config.doWartDrops = spec.comment("Determines whether wart blocks will do drops when they decay")
+        Config.doWartDrops = spec.comment("Determines whether wart blocks will drop loot when they decay")
                 .define("doWartDrops", false);
         spec.pop();
 
